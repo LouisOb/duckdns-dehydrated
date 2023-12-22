@@ -29,3 +29,8 @@ services:
 The account and certificate data is stored in `data`.
 
 Instead of solving challenges for the domain and subdomain at the same time the generation process is split for every subdomain.
+The reason for this is that duckDNS allows only one DNS TXT entry on the domain.
+
+## Prerequisites
+ - A DuckDNS account
+ - Docker
