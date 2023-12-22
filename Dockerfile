@@ -12,7 +12,7 @@ ENV TZ=${TZ}
 
 
 RUN apk update && \
-    apk add --no-cache curl tzdata bash openrc busybox-openrc openssl\
+    apk add --no-cache curl tzdata bash openrc busybox-openrc openssl sudo\
     && rm -rf \
     /var/cache/apk/* \
     /.cache
