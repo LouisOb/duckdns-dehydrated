@@ -9,6 +9,8 @@ set -e
 set -u
 set -o pipefail
 
+DUCKDNS_TOKEN=your-token
+
 if [[ -z "${DUCKDNS_TOKEN}" ]]; then
   echo " - Unable to locate DuckDNS Token in the environment!  Make sure DUCKDNS_TOKEN environment variable is set"
 fi

@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-set -o pipefail
 
 
 # Check if the cron environmental variable is set
@@ -34,6 +33,8 @@ fi
 
 if [ -n "$DUCKDNS_TOKEN" ]; then
     echo "Using DuckDNS token $DUCKDNS_TOKEN"
+    # Replace the token in the hook.sh file
+    sed -i "s/your-token/$DUCKDNS_TOKEN/g" $WORK_PATH/hook.sh
 else
     echo "DUCKDNS_TOKEN is not defined. Please set the token."
     exit 1
