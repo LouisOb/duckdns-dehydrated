@@ -22,7 +22,7 @@ else
     echo "Using default CA: letsencrypt"
 fi
 
-if [ -n "$DEHYDRATED_DEHYDRATED_USER" ]; then
+if [ -n "$DEHYDRATED_DEHYDRATED_USER" ] && ! id $DEHYDRATED_DEHYDRATED_USER; then
     #create user
     echo "Creating user $DEHYDRATED_DEHYDRATED_USER"
     adduser -D -H -s /bin/sh $DEHYDRATED_DEHYDRATED_USER
