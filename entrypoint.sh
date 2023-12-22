@@ -1,7 +1,5 @@
 #!/bin/bash
-set -e
-set -u
-set -o pipefail
+set -eou pipefail
 
 
 # Check if the cron environmental variable is set
