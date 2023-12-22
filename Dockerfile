@@ -47,6 +47,7 @@ ARG gid=1000
 RUN groupadd -g ${gid} ${group}
 RUN useradd -u ${uid} -g ${group} -s /bin/sh
 
+
 # Switch to user
 USER ${uid}:${gid}
 
