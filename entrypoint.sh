@@ -23,6 +23,14 @@ else
     echo "Using default CA: letsencrypt"
 fi
 
+if [ -n "$DEHYDRATED_DEHYDRATED_USER" ]; then
+    #create user
+    echo "Creating user $DEHYDRATED_DEHYDRATED_USER"
+    adduser -D -H -s /bin/sh $DEHYDRATED_DEHYDRATED_USER
+    chown -R $DEHYDRATED_DEHYDRATED_USER:$DEHYDRATED_DEHYDRATED_USER $DATA_PATH
+    echo "Using user $DEHYDRATED_DEHYDRATED_USER"
+fi
+
 if [ -n "$DUCKDNS_TOKEN" ]; then
     echo "Using DuckDNS token $DUCKDNS_TOKEN"
 else
