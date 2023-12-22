@@ -1,46 +1,45 @@
 #!/bin/bash
-set -eou pipefail
+set -e
+set -o pipefail
 
 
 # Check if the cron environmental variable is set
-if [ -z "$CRON_SCHEDULE" ]; then
-    echo "Using default cron schedule"
-    # Set the default cron schedule
-    echo "0 0 * * * /request_cert.sh" | crontab -
-else
+if [ -n "$CRON_SCHEDULE" ]; then
     echo "Using custom cron schedule: $CRON_SCHEDULE"
     
     # Copy the custom cron schedule into the crontab file
     echo "$CRON_SCHEDULE /request_cert.sh" | crontab -
+else
+    echo "Using default cron schedule"
+    # Set the default cron schedule
+    echo "0 0 * * * /request_cert.sh" | crontab -
 fi
 
-if [ -z "$DEHYDRATED_CA" ]; then
-    echo "Using default CA: letsencrypt"
-else
+if [ -n "$DEHYDRATED_CA" ]; then
     echo "Using custom CA: $DEHYDRATED_CA"
     # Copy the custom CA into the config file
     echo "CA=$DEHYDRATED_CA" >> $WORK_PATH/config
-    
+else
+    echo "Using default CA: letsencrypt"
 fi
 
-if [ -z "$DUCKDNS_TOKEN" ]; then
+if [ -n "$DUCKDNS_TOKEN" ]; then
+    echo "Using DuckDNS token $DUCKDNS_TOKEN"
+else
     echo "DUCKDNS_TOKEN is not defined. Please set the token."
     exit 1
-else
-    echo "Using DuckDNS token $DUCKDNS_TOKEN"
 fi
 
-if [ -z "$MAIN_DOMAIN" ]; then
-    echo "DOMAINS is not defined. Please set the domains."
-    exit 1
-else
+if [ -n "$MAIN_DOMAIN" ]; then
     echo "Using domains $MAIN_DOMAIN"
     # Copy the custom domains into the domains.txt file
     echo "$MAIN_DOMAIN" >> $WORK_PATH/domains.txt
+else
+    echo "DOMAINS is not defined. Please set the domains."
+    exit 1
 fi
 
-if [ -z "$SUBDOMAINS" ]; then
-else
+if [ -n "$SUBDOMAINS" ]; then
     arr=( $SUBDOMAINS )
     echo "Using subdomains $SUBDOMAINS"
     # Copy the custom subdomains into the domains.txt file
