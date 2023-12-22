@@ -12,7 +12,7 @@ services:
       - ./data:/data
     environment:
       - DUCKDNS_TOKEN=token
-      - CRON_SCHEDULE=0 0 * * * # (default)
+      - CRON_SCHEDULE=0 0 */7 * * # (default)
       - MAIN_DOMAIN=yourdomain.duckdns.org
       - SUBDOMAINS=*.yourdomain.duckdns.org
       - DEHYDRATED_CONTACT_EMAIL=yourmail@mail.com

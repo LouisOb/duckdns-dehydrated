@@ -12,7 +12,7 @@ if [ -n "$CRON_SCHEDULE" ]; then
 else
     echo "Using default cron schedule"
     # Set the default cron schedule
-    echo "0 0 * * * /request_cert.sh" | crontab -
+    echo "0 0 */7 * * /request_cert.sh" | crontab -
 fi
 
 if [ -n "$DEHYDRATED_CA" ]; then
