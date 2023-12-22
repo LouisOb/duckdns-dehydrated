@@ -43,7 +43,7 @@ fi
 if [ -n "$MAIN_DOMAIN" ]; then
     echo "Using domains $MAIN_DOMAIN"
     # Copy the custom domains into the domains.txt file
-    echo "$MAIN_DOMAIN" >> $WORK_PATH/domains.txt
+    echo "$MAIN_DOMAIN > domain_cert" >> $WORK_PATH/domains.txt
 else
     echo "DOMAINS is not defined. Please set the domains."
     exit 1
