@@ -40,6 +40,16 @@ COPY ./entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
 
+ARG user=cert
+ARG group=cert
+ARG uid=1000
+ARG gid=1000
+RUN groupadd -g ${gid} ${group}
+RUN useradd -u ${uid} -g ${group} -s /bin/sh
+
+# Switch to user
+USER ${uid}:${gid}
+
 ENTRYPOINT ["/entrypoint.sh"]
 
 
