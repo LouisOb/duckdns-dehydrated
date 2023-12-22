@@ -14,7 +14,6 @@ services:
       dockerfile: Dockerfile
     container_name: dehydrated-duckdns
     restart: unless-stopped
-    network_mode: host
     volumes:
       - ./data:/data
     environment:
